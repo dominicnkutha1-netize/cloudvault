@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudVault - Secure Cloud Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <div class="logo">
+                <i class="ti ti-cloud-lock"></i>
+                <h1>CloudVault</h1>
+            </div>
+            <div class="header__actions">
+                <button class="btn btn--primary" id="addNoteBtn">
+                    <i class="ti ti-plus"></i>
+                    New Note
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="toolbar">
+                <div class="search">
+                    <i class="ti ti-search search__icon"></i>
+                    <input type="text" id="searchInput" class="search__input" placeholder="Search notes...">
+                </div>
+                <div class="stats">
+                    <span id="notesCount">0 notes</span>
+                </div>
+            </div>
+
+            <div id="notesGrid" class="notes-grid"></div>
+            <div id="emptyState" class="empty-state">
+                <i class="ti ti-file-text empty-state__icon"></i>
+                <h2>No notes yet</h2>
+                <p>Create your first note to get started</p>
+                <button class="btn btn--primary" id="emptyAddBtn">
+                    <i class="ti ti-plus"></i>
+                    Create Note
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="noteModal" class="modal">
+        <div class="modal__backdrop" id="modalBackdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 id="modalTitle">New Note</h2>
+                <button class="modal__close" id="modalClose">
+                    <i class="ti ti-x"></i>
+                </button>
+            </div>
+            <div class="modal__body">
+                <input type="text" id="noteTitle" class="input" placeholder="Note title..." maxlength="100">
+                <textarea id="noteContent" class="textarea" placeholder="Write your note here..." rows="12"></textarea>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--ghost" id="modalCancel">Cancel</button>
+                <button class="btn btn--primary" id="modalSave">
+                    <i class="ti ti-device-floppy"></i>
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="configModal" class="modal modal--active">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2>Connect to Supabase</h2>
+            </div>
+            <div class="modal__body">
+                <p class="config__description">Enter your Supabase credentials to get started with CloudVault</p>
+                <div class="form-group">
+                    <label for="supabaseUrl" class="label">Supabase URL</label>
+                    <input type="url" id="supabaseUrl" class="input" placeholder="https://your-project.supabase.co">
+                </div>
+                <div class="form-group">
+                    <label for="supabaseKey" class="label">Supabase Anon Key</label>
+                    <input type="password" id="supabaseKey" class="input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                </div>
+                <div class="config__help">
+                    <a href="https://supabase.com/dashboard" target="_blank" rel="noopener">Get credentials from Supabase Dashboard →</a>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--primary" id="configSave">
+                    <i class="ti ti-plug-connected"></i>
+                    Connect
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

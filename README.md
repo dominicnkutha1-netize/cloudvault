@@ -108,4 +108,4 @@ MIT License - feel free to use this project for personal or commercial purposes.
 
 ## Author
 
-Built with ❤️ by [Dr Dominic Nkutha](https://github.com/dominicnkutha1-netize)
+Built with ❤️ by [Busokuhle "Dominic" Nkutha](https://github.com/dominicnkutha1-netize)

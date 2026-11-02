@@ -2,6 +2,11 @@
 
 A clean, modern cloud notes application built with vanilla HTML, CSS, and JavaScript. Store and manage your notes securely using Supabase as your cloud database.
 
+**[▶ Open the live demo](https://dominicnkutha1-netize.github.io/cloudvault/)** — it will ask for a
+Supabase URL and anon key on first load. Bring your own project, or read the
+[known limitations](#known-limitations) first: the demo's row-level policies are deliberately
+permissive.
+
 ![CloudVault Preview](https://img.shields.io/badge/Status-Ready-success?style=for-the-badge)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
@@ -16,7 +21,8 @@ A clean, modern cloud notes application built with vanilla HTML, CSS, and JavaSc
 - 🎨 **Modern UI** - Clean dark theme with smooth animations
 - 📱 **Responsive** - Works perfectly on desktop and mobile
 - ⚡ **Fast & Lightweight** - No frameworks, just vanilla JS
-- 🔒 **Secure** - Your data is stored in your own Supabase project
+- 🔌 **Bring your own backend** - the Supabase credentials live in the browser's local
+  storage, not in this repository
 
 ## Getting Started
 
@@ -64,15 +70,30 @@ CREATE POLICY "Allow all operations" ON notes
 
 ## Deployment
 
-### GitHub Pages
-1. Create a new repository on GitHub
-2. Push all files to the repository
-3. Go to Settings → Pages
-4. Set source to "Deploy from a branch" and select `main`
-5. Your app will be live at `https://yourusername.github.io/repo-name/`
+This repository is a static site with no build step, so it is served directly by
+GitHub Pages from the `main` branch:
 
-### Other Platforms
-CloudVault works great on Netlify, Vercel, or any static hosting platform.
+- **Live:** <https://dominicnkutha1-netize.github.io/cloudvault/>
+- **Settings:** repository → Settings → Pages → Deploy from a branch → `main` / `/`
+
+To run your own copy, fork the repository, enable Pages the same way, and point it
+at your own Supabase project. Any static host (Netlify, Vercel, S3, nginx) works
+too — it is three files.
+
+## Known limitations
+
+- **Row-level security is enabled but the policy is wide open.** The SQL above
+  creates `FOR ALL USING (true)`, so anyone holding the anon key can read and
+  write every note. That is fine for a demo of CRUD, and wrong for a private
+  notebook. The fix is Supabase Auth plus a `user_id` column and policies that
+  compare against `auth.uid()`.
+- **Credentials are stored in `localStorage`.** They never leave the browser
+  except in requests to your own Supabase project, but any injected script could
+  read them.
+- **No offline support and no sync conflict handling.** Two tabs editing the same
+  note will overwrite each other.
+- **No tests.** The app logic is small enough to be worth a few, but there are
+  none.
 
 ## Tech Stack
 

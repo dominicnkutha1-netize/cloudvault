@@ -7,6 +7,14 @@ Supabase URL and anon key on first load. Bring your own project, or read the
 [known limitations](#known-limitations) first: the demo's row-level policies are deliberately
 permissive.
 
+<p align="center">
+  <a href="docs/screenshots/connect.png"><img src="docs/screenshots/connect.png" width="100%" alt="CloudVault on first run: the notes shell behind a dialog asking for a Supabase project URL and anon key"></a>
+</p>
+
+<sub><b>First run.</b> There is no shared backend: the app asks for your own Supabase project and
+keeps the URL and key in this browser's <code>localStorage</code>. Nothing is baked into the page,
+which is why the repository has no secrets in it.</sub>
+
 ![CloudVault Preview](https://img.shields.io/badge/Status-Ready-success?style=for-the-badge)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
